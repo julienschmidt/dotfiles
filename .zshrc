@@ -355,6 +355,9 @@ unsetopt list_beep              # no bell on ambiguous completion
 unsetopt rm_star_silent         # ask for confirmation for `rm *' or `rm path/*'
 
 
+# limit text width of man pages to 80 chars
+export MANWIDTH=80
+
 # default locales
 export LC_ALL=en_US.utf8
 export LANGUAGE=en_US.utf8
