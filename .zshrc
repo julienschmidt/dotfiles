@@ -25,7 +25,8 @@ setopt bang_hist                # !keyword
 # Completion
 ##
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  BREWPREFIX=$(brew --prefix)
+  FPATH=$BREWPREFIX/share/zsh/site-functions:$BREWPREFIX/share/zsh-completions:$FPATH
 fi
 
 autoload -U compinit && compinit -i
