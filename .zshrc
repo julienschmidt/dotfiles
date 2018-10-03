@@ -1,3 +1,7 @@
+# MIT License
+# Copyright (c) 2018 Julien Schmidt
+# https://github.com/julienschmidt/dotfiles
+
 # colors
 autoload -U colors && colors
 
