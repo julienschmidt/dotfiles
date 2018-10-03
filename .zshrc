@@ -124,7 +124,7 @@ PROMPT+='%B%{$fg[$color]%}%n%{$reset_color%}%b'
 if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" || -n "$SSH_CLIENT" ]]; then
     PROMPT+='@%m'
 elif [[ -x `which systemd-detect-virt` ]] && systemd-detect-virt --quiet; then
-    PROMPT+='@%B%{$fg[cyan]%}%m%{$reset_color%}%b'
+    PROMPT+='@%{$fg[yellow]%}%m%{$reset_color%}%b'
 fi;
 PROMPT+=':%B%40<..<%~%<<${vcs_info_msg_0_} %{$fg[cyan]%}❯%{$reset_color%}%b '
 
