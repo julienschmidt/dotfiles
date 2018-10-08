@@ -114,11 +114,14 @@ PROMPT='%B%F{red}%(?..%? )%f%b'
 PROMPT+='%(12V.%F{242}%12v%f .)'
 
 # user
-color="blue"
+USERCOLOR="blue"
+#PROMPTSYMBOL='❯'
+PROMPTSYMBOL='$'
 if (( EUID == 0 )); then
-    color="red"
+    USERCOLOR="red"
+    PROMPTSYMBOL='#'
 fi;
-PROMPT+='%B%{$fg[$color]%}%n%{$reset_color%}%b'
+PROMPT+='%B%{$fg[$USERCOLOR]%}%n%{$reset_color%}%b'
 
 # add host if connected via ssh
 if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" || -n "$SSH_CLIENT" ]]; then
@@ -126,7 +129,7 @@ if [[ -n "$SSH_CONNECTION" || -n "$SSH_TTY" || -n "$SSH_CLIENT" ]]; then
 elif [[ -x `which systemd-detect-virt` ]] && systemd-detect-virt --quiet; then
     PROMPT+='@%{$fg[yellow]%}%m%{$reset_color%}%b'
 fi;
-PROMPT+=':%B%40<..<%~%<<${vcs_info_msg_0_} %{$fg[cyan]%}❯%{$reset_color%}%b '
+PROMPT+=':%B%40<..<%~%<<${vcs_info_msg_0_} %{$fg[cyan]%}$PROMPTSYMBOL%{$reset_color%}%b '
 
 # right-side
 RPROMPT='%T' # show time
