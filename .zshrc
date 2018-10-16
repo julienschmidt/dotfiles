@@ -419,10 +419,12 @@ export EDITOR="nano"
 if [[ -x `which subl` ]]; then
     export VISUAL="subl -n -w"
     alias edit='subl'
+    alias e='subl'
     git config --global core.editor "subl -n -w"
 else
     alias edit='nano'
     alias subl='nano'
+    alias e='nano'
 fi
 
 export PAGER='less'
