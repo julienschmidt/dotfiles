@@ -2,6 +2,15 @@
 # Copyright (c) 2018 Julien Schmidt
 # https://github.com/julienschmidt/dotfiles
 
+# Install recommended (optional) dependencies:
+#
+# Debian/Ubumtu:
+# apt install command-not-found zsh-syntax-highlighting
+#
+# MacOS with brew:
+# brew tap homebrew/command-not-found
+# brew install zsh-syntax-highlighting
+
 # colors
 autoload -U colors && colors
 
@@ -86,6 +95,7 @@ for compcom in cp deborphan df feh fetchipac gcc gpasswd head hnb ipacsum mv \
     [[ -z ${_comps[$compcom]} ]] && compdef _gnu_generic ${compcom}
 done; unset compcom
 
+
 ##
 # VCS info
 ##
@@ -134,6 +144,19 @@ PROMPT+=':%B%40<..<%~%<<${vcs_info_msg_0_} %{$fg[cyan]%}$PROMPTSYMBOL%{$reset_co
 # right-side
 RPROMPT='%T' # show time
 
+
+##
+# command-not-found
+##
+if [[ -x /usr/lib/command-not-found ]] ; then
+  if (( ! ${+functions[command_not_found_handler]} )) ; then
+    function command_not_found_handler {
+      [[ -x /usr/lib/command-not-found ]] || return 1
+      /usr/lib/command-not-found --no-failure-msg -- ${1+"$1"} && :
+    }
+  fi
+fi
+# macOS/brew integration: see blow
 
 ##
 # Key Bindings
@@ -437,6 +460,9 @@ if [[ $(uname) = 'Darwin' ]]; then
 
         # ¯\_(ツ)_/¯
         alias apt='brew'
+
+        # command-not-found (see above) for brew
+        if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
     fi
 
     # iTerm integration
