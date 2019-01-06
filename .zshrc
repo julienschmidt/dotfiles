@@ -147,10 +147,12 @@ RPROMPT='%T' # show time
 ##
 # Terminal Support
 ##
-# stolen from oh-my-zsh
 # Set terminal window and tab/icon title
 #
 # usage: title short_tab_title [long_window_title]
+#
+# stolen from oh-my-zsh:
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/termsupport.zsh
 #
 # See: http://www.faqs.org/docs/Linux-mini/Xterm-Title.html#ss3.1
 # Fully supports screen, iterm, and probably most modern xterm and rxvt
@@ -166,12 +168,29 @@ function title {
   # if it is set and empty, leave it as is
   : ${2=$1}
 
-  if [[ "$TERM" == screen* ]]; then
-    print -Pn "\ek$1:q\e\\" #set screen hardstatus, usually truncated at 20 chars
-  elif [[ "$TERM" == xterm* ]] || [[ "$TERM" == rxvt* ]] || [[ "$TERM" == ansi ]] || [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
-    print -Pn "\e]2;$2:q\a" #set window name
-    print -Pn "\e]1;$1:q\a" #set icon (=tab) name
+  case "$TERM" in
+    cygwin|xterm*|putty*|rxvt*|ansi)
+      print -Pn "\e]2;$2:q\a" # set window name
+      print -Pn "\e]1;$1:q\a" # set tab name
+      ;;
+    screen*)
+      print -Pn "\ek$1:q\e\\" # set screen hardstatus
+      ;;
+    *)
+      if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+        print -Pn "\e]2;$2:q\a" # set window name
+        print -Pn "\e]1;$1:q\a" # set tab name
+      else
+        # Try to use terminfo to set the title
+        # If the feature is available set title
+        if [[ -n "$terminfo[fsl]" ]] && [[ -n "$terminfo[tsl]" ]]; then
+    echoti tsl
+    print -Pn "$1"
+    echoti fsl
   fi
+      fi
+      ;;
+  esac
 }
 
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%~%<<" #15 char left truncated PWD
