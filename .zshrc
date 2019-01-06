@@ -4,7 +4,7 @@
 
 # Install recommended (optional) dependencies:
 #
-# Debian/Ubumtu:
+# Debian/Ubuntu:
 # apt install command-not-found zsh-syntax-highlighting
 #
 # MacOS with brew:
@@ -45,7 +45,6 @@ fi
 autoload -U compinit && compinit -i
 zmodload -i zsh/complist
 setopt hash_list_all            # hash everything before completion
-setopt completealiases          # complete aliases
 setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word
 setopt complete_in_word         # allow completion from within a word/phrase
 setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
