@@ -341,6 +341,7 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
+alias d='dirs -v | head -10'
 alias 1='cd -'
 alias 2='cd -2'
 alias 3='cd -3'
