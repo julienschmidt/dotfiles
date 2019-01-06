@@ -284,8 +284,10 @@ function update-conf {
   fi
 
   if [[ -f ~/$1 ]]; then
+    echo "Saving old '$1' to '$1.old' ..."
     mv ~/$1 ~/$1.old
   fi
+  echo "Renaming '$1.new' to '$1' ..."
   mv ~/$1.new ~/$1
 }
 
