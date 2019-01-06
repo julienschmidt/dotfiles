@@ -263,8 +263,8 @@ key[PageDown]="$terminfo[knp]"
 [[ -n "$key[Delete]"    ]] && bindkey -- "$key[Delete]"    delete-char
 [[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        up-line-or-search    # start typing + [Up-Arrow] - fuzzy find history forward
 [[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      down-line-or-search  # start typing + [Down-Arrow] - fuzzy find history backward
-[[ -n "$key[PageUp]"    ]] && bindkey -- "$key[PageUp]"    up-line-or-history   # Up a line of history
-[[ -n "$key[PageDown]"  ]] && bindkey -- "$key[PageDown]"  down-line-or-history # Down a line of history
+[[ -n "$key[PageUp]"    ]] && bindkey -- "$key[PageUp]"    up-history           # Up a line of history
+[[ -n "$key[PageDown]"  ]] && bindkey -- "$key[PageDown]"  down-history         # Down a line of history
 [[ -n "$key[Left]"      ]] && bindkey -- "$key[Left]"      backward-char
 [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
 
