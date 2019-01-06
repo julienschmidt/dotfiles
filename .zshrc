@@ -5,7 +5,7 @@
 # Install recommended (optional) dependencies:
 #
 # Debian/Ubuntu:
-# apt install command-not-found zsh-syntax-highlighting
+# apt install command-not-found curl zsh-syntax-highlighting
 #
 # MacOS with brew:
 # brew tap homebrew/command-not-found
@@ -259,6 +259,39 @@ fi
 # macOS/brew integration: see blow
 
 ##
+# Conf Update
+##
+function update-conf {
+  local conf_base='https://raw.githubusercontent.com/julienschmidt/dotfiles/master/'
+
+  if [[ -z "$1"  || -n "$2" ]]; then
+    echo "Usage: update-conf <conf file>"
+    return 1
+  fi
+
+  if [[ -x `which curl` ]]; then
+    curl -f -o ~/$1.new $conf_base$1
+  elif [[ -x `which wget` ]]; then
+    wget -O ~/$1.new $conf_base$1
+  else
+    echo "ERROR: Please install curl or wget!"
+    return 1
+  fi
+
+  if [ $? -ne 0 ]; then
+    echo "ERROR: Downloading conf file '$1' failed!"
+    return 1
+  fi
+
+  if [[ -f ~/$1 ]]; then
+    mv ~/$1 ~/$1.old
+  fi
+  mv ~/$1.new ~/$1
+}
+
+alias update-zshrc='update-conf .zshrc && . ~/.zshrc'
+
+##
 # Key Bindings
 ##
 # create a zkbd compatible hash;
@@ -393,12 +426,6 @@ alias restart='command systemctl restart'
 alias status='command systemctl status'
 alias journal='command journalctl -u'
 
-
-# The most useful of all aliases: updating this zshrc
-alias update-zshrc='wget -O ~/zshrc.new https://raw.githubusercontent.com/julienschmidt/dotfiles/master/.zshrc \
-  && mv ~/.zshrc ~/.zshrc.old \
-  && mv ~/zshrc.new ~/.zshrc \
-  && source ~/.zshrc'
 
 ##
 # Various
