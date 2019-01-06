@@ -352,10 +352,23 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 
-alias ip='ip --color'
-alias ipb='ip --color --brief'
+alias ip='command ip --color'
+alias ipb='command ip --color --brief'
 
-alias mdstat='cat /proc/mdstat'
+alias mdstat='command cat /proc/mdstat'
+
+# systemd
+alias enable='command systemctl enable'
+alias enablenow='command systemctl enable --now'
+alias disable='command systemctl disable'
+alias disablenow='command systemctl disable --now'
+alias start='command systemctl start'
+alias stop='command systemctl stop'
+alias reload='command systemctl reload'
+alias restart='command systemctl restart'
+alias status='command systemctl status'
+alias journal='command journalctl -u'
+
 
 
 ##
