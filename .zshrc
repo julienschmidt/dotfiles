@@ -355,6 +355,7 @@ alias 9='cd -9'
 alias ip='command ip --color'
 alias ipb='command ip --color --brief'
 
+alias fstab='command cat /etc/fstab'
 alias mdstat='command cat /proc/mdstat'
 
 # systemd
