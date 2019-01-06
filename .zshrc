@@ -371,7 +371,10 @@ alias journal='command journalctl -u'
 
 
 # The most useful of all aliases: updating this zshrc
-alias update-zshrc='wget -O ~/zshrc.new https://raw.githubusercontent.com/julienschmidt/dotfiles/master/.zshrc && mv ~/.zshrc ~/.zshrc.old && mv ~/zshrc.new ~/.zshrc'
+alias update-zshrc='wget -O ~/zshrc.new https://raw.githubusercontent.com/julienschmidt/dotfiles/master/.zshrc \
+  && mv ~/.zshrc ~/.zshrc.old \
+  && mv ~/zshrc.new ~/.zshrc \
+  && source ~/.zshrc'
 
 ##
 # Various
@@ -478,7 +481,9 @@ if [[ $(uname) = 'Darwin' ]]; then
         alias apt='brew'
 
         # command-not-found (see above) for brew
-        if brew command command-not-found-init > /dev/null 2>&1; then eval "$(brew command-not-found-init)"; fi
+        if brew command command-not-found-init > /dev/null 2>&1; then
+          eval "$(brew command-not-found-init)"
+        fi
     fi
 
     # iTerm integration
