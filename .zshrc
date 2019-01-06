@@ -261,10 +261,10 @@ key[PageDown]="$terminfo[knp]"
 [[ -n "$key[Insert]"    ]] && bindkey -- "$key[Insert]"    overwrite-mode
 [[ -n "$key[Backspace]" ]] && bindkey -- "$key[Backspace]" backward-delete-char
 [[ -n "$key[Delete]"    ]] && bindkey -- "$key[Delete]"    delete-char
-[[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        up-line-or-search    # start typing + [Up-Arrow] - fuzzy find history forward
-[[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      down-line-or-search  # start typing + [Down-Arrow] - fuzzy find history backward
-[[ -n "$key[PageUp]"    ]] && bindkey -- "$key[PageUp]"    up-history           # Up a line of history
-[[ -n "$key[PageDown]"  ]] && bindkey -- "$key[PageDown]"  down-history         # Down a line of history
+[[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        history-search-backward # start typing + [Up-Arrow] - fuzzy find history forward
+[[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      history-search-forward  # start typing + [Down-Arrow] - fuzzy find history backward
+[[ -n "$key[PageUp]"    ]] && bindkey -- "$key[PageUp]"    up-history              # Up a line of history
+[[ -n "$key[PageDown]"  ]] && bindkey -- "$key[PageDown]"  down-history            # Down a line of history
 [[ -n "$key[Left]"      ]] && bindkey -- "$key[Left]"      backward-char
 [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
 
@@ -285,10 +285,10 @@ bindkey ' ' magic-space                               # [Space] - do history exp
 
 bindkey "[C" forward-word
 bindkey "[D" backward-word
-bindkey "^[[1;9H" backward-word # Fn-Option-Left, Option-Home
-bindkey "^[[1;9F" forward-word  # Fn-Option-Right, Option-End
-bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
+bindkey "^[[1;9H" backward-word                       # [Fn-Option-Left], [Option-Home] - move backward one word
+bindkey "^[[1;9F" forward-word                        # [Fn-Option-Right], [Option-End] - move forward one word
 bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move backward one word
+bindkey '^[[1;5C' forward-word                        # [Ctrl-RightArrow] - move forward one word
 
 if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
