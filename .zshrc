@@ -371,6 +371,8 @@ alias status='command systemctl status'
 alias journal='command journalctl -u'
 
 
+# The most useful of all aliases: updating this zshrc
+alias update-zshrc='wget -O ~/zshrc.new https://raw.githubusercontent.com/julienschmidt/dotfiles/master/.zshrc && mv ~/.zshrc ~/.zshrc.old && mv ~/zshrc.new ~/.zshrc'
 
 ##
 # Various
