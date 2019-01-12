@@ -10,6 +10,35 @@
 # MacOS with brew:
 # brew install zsh-syntax-highlighting
 
+
+##
+# General ZSH Options
+##
+setopt extended_glob            # activate complex pattern globbing
+setopt glob_dots                # include dotfiles in globbing
+
+setopt auto_pushd               # make cd push the old directory onto the directory stack.
+setopt pushd_ignore_dups        # don't push the same dir twice.
+
+setopt auto_cd                  # if command is a path, cd into it
+setopt auto_remove_slash        # self explicit
+setopt chase_links              # resolve symlinks
+setopt correct                  # try to correct spelling of commands
+
+#setopt longlistjobs             # display PID when suspending processes as well
+setopt nobeep                   # avoid "beep"ing
+setopt nohup                    # Don't send SIGHUP to background processes when the shell exits.
+setopt nonomatch                # try to avoid the 'zsh: no matches found...'
+setopt notify                   # report the status of backgrounds jobs immediately
+#setopt print_exit_value         # print return value if non-zero
+
+setopt clobber                  # must use >| to truncate existing files
+unsetopt hist_beep              # no bell on error in history
+unsetopt ignore_eof             # do not exit on end-of-file
+unsetopt list_beep              # no bell on ambiguous completion
+unsetopt rm_star_silent         # ask for confirmation for `rm *' or `rm path/*'
+
+
 # colors
 autoload -U colors && colors
 
@@ -220,7 +249,7 @@ function z_termsupport_preexec {
     return
   fi
 
-  setopt extended_glob
+  #setopt extended_glob
 
   # cmd name only, or if this is sudo or ssh, the next cmd
   local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
@@ -434,30 +463,6 @@ alias journal='command journalctl -u'
 ##
 # Various
 ##
-
-setopt auto_pushd               # make cd push the old directory onto the directory stack.
-setopt pushd_ignore_dups        # don't push the same dir twice.
-
-setopt auto_cd                  # if command is a path, cd into it
-setopt auto_remove_slash        # self explicit
-setopt chase_links              # resolve symlinks
-setopt correct                  # try to correct spelling of commands
-
-setopt extended_glob            # activate complex pattern globbing
-setopt glob_dots                # include dotfiles in globbing
-
-#setopt longlistjobs             # display PID when suspending processes as well
-setopt nobeep                   # avoid "beep"ing
-setopt nohup                    # Don't send SIGHUP to background processes when the shell exits.
-setopt nonomatch                # try to avoid the 'zsh: no matches found...'
-setopt notify                   # report the status of backgrounds jobs immediately
-#setopt print_exit_value         # print return value if non-zero
-
-setopt clobber                  # must use >| to truncate existing files
-unsetopt hist_beep              # no bell on error in history
-unsetopt ignore_eof             # do not exit on end-of-file
-unsetopt list_beep              # no bell on ambiguous completion
-unsetopt rm_star_silent         # ask for confirmation for `rm *' or `rm path/*'
 
 
 # limit text width of man pages to 80 chars
