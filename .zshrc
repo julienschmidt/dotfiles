@@ -8,7 +8,6 @@
 # apt install command-not-found curl zsh-syntax-highlighting
 #
 # MacOS with brew:
-# brew tap homebrew/command-not-found
 # brew install zsh-syntax-highlighting
 
 # colors
@@ -247,6 +246,10 @@ fi
 
 ##
 # command-not-found
+#
+# Linux only. While for MacOS there is
+# https://github.com/Homebrew/homebrew-command-not-found it is not used as it
+# is waaay too slow.
 ##
 if [[ -x /usr/lib/command-not-found ]] ; then
   if (( ! ${+functions[command_not_found_handler]} )) ; then
@@ -256,7 +259,6 @@ if [[ -x /usr/lib/command-not-found ]] ; then
     }
   fi
 fi
-# macOS/brew integration: see blow
 
 ##
 # Conf Update
@@ -532,11 +534,6 @@ if [[ $(uname) = 'Darwin' ]]; then
 
         # ¯\_(ツ)_/¯
         alias apt='brew'
-
-        # command-not-found (see above) for brew
-        if brew command command-not-found-init > /dev/null 2>&1; then
-          eval "$(brew command-not-found-init)"
-        fi
     fi
 
     # iTerm integration
