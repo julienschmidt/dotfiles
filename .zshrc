@@ -40,7 +40,7 @@ unsetopt rm_star_silent         # ask for confirmation for `rm *' or `rm path/*'
 
 
 # colors
-autoload -U colors && colors
+autoload -Uz colors && colors
 
 ##
 # History
@@ -59,7 +59,7 @@ setopt hist_reduce_blanks       # trim blanks
 setopt hist_verify              # show before executing history commands
 setopt inc_append_history       # add commands as they are typed, don't wait until shell exit
 setopt share_history            # share hist between sessions
-setopt bang_hist                # !keyword
+#setopt bang_hist                # !keyword
 
 
 ##
@@ -70,7 +70,7 @@ if type brew &>/dev/null; then
   FPATH=$BREWPREFIX/share/zsh/site-functions:$BREWPREFIX/share/zsh-completions:$FPATH
 fi
 
-autoload -U compinit && compinit -i
+autoload -Uz compinit && compinit -i
 zmodload -i zsh/complist
 setopt hash_list_all            # hash everything before completion
 setopt always_to_end            # when completing from the middle of a word, move the cursor to the end of the word
@@ -82,7 +82,6 @@ zstyle ':completion:*' cache-path ~/.zsh/cache              # cache path
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # ignore case
 zstyle ':completion:*' menu select=2                        # menu if nb items > 2
 zstyle ':completion:*' list-colors ''
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}       # colorz !
 zstyle ':completion:*::::' completer _expand _complete _ignored _approximate # list of completers to use
 zstyle ':completion:*' accept-exact '*(N)'
 
