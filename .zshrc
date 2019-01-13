@@ -456,7 +456,7 @@ alias stop='command systemctl stop'
 alias reload='command systemctl reload'
 alias restart='command systemctl restart'
 alias status='command systemctl status'
-alias journal='command journalctl -u'
+alias journal='command journalctl -f -n 100 -u'
 
 
 ##
