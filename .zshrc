@@ -59,7 +59,7 @@ setopt hist_reduce_blanks       # trim blanks
 setopt hist_verify              # show before executing history commands
 setopt inc_append_history       # add commands as they are typed, don't wait until shell exit
 setopt share_history            # share hist between sessions
-#setopt bang_hist                # !keyword
+unsetopt bang_hist              # make ! work as one would expect
 
 
 ##
