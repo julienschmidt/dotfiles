@@ -447,10 +447,6 @@ alias fstab='command cat /etc/fstab'
 alias mdstat='command cat /proc/mdstat'
 
 # systemd
-alias enable='command systemctl enable'
-alias enablenow='command systemctl enable --now'
-alias disable='command systemctl disable'
-alias disablenow='command systemctl disable --now'
 alias start='command systemctl start'
 alias stop='command systemctl stop'
 alias reload='command systemctl reload'
