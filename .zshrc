@@ -545,7 +545,8 @@ fi
 # Go stuff
 export GOBIN=/usr/local/bin
 export GOPATH=/usr/local/src/go
-# export GOPATH=$HOME/Development/go
-alias go-tip=$HOME/go-tip/bin/go
 
-export PATH="/usr/local/sbin:/usr/local/opt/llvm/bin:$HOME/.cargo/bin:$PATH"
+# Include local stuff
+if [[ -a ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
