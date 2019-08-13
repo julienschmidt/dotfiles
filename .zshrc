@@ -446,6 +446,8 @@ alias ipb='command ip --color --brief'
 alias fstab='command cat /etc/fstab'
 alias mdstat='command cat /proc/mdstat'
 
+alias please="sudo"
+
 # systemd
 alias start='command systemctl start'
 alias stop='command systemctl stop'
