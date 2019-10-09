@@ -231,6 +231,18 @@ if [[ $TERM_PROGRAM == Apple_Terminal ]]; then
   ZSH_THEME_TERM_TITLE_IDLE="%n@%m"
 fi
 
+# ssh with tmux integration
+# attach to session 'julien' if it already exists or create it.
+function ssht {
+  ssh -t $@ "tmux -CC new -A -s julien";
+}
+_ssht () {
+  local service=ssh
+  _ssh "$@"
+}
+compdef _ssht ssht
+
+
 # Runs before showing the prompt
 function z_termsupport_precmd {
   emulate -L zsh
